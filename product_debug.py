@@ -15,6 +15,7 @@ import json
 import pyotp
 import os
 import datetime as date
+import webbrowser as web
 
 
 root = Tk()
@@ -317,6 +318,11 @@ def change_passwords():
     ttk.Button(master = configure_window, text = "Подтвержить", width = 14, command = ok__).place(x = 185, y = 250, anchor = CENTER)
     ttk.Button(master = configure_window, text = "Отмена", width = 14, command = cancel_).place(x = 62, y = 250, anchor = CENTER)
 
+def openrepo_():
+    web.open(url = "https://github.com/abeljakowoff/2FA-Authenticator---College-Project-Product", new = 0)
+
+def aboutprogram_():
+    web.open(url = "https://github.com/abeljakowoff/2FA-Authenticator---College-Project-Product/blob/master/README.md", new = 0)
 
 
 ttk.Label(master = root, text = "2-FA AUTHENTICATION", font = "Verdana 14 bold").place(x = 150, y = 30, anchor = "ce") # title
@@ -329,7 +335,8 @@ filemenu.add_command(label = "Добавить новый ключ", command = a
 filemenu.add_command(label = "Изменить существующие ключи", command = change_passwords)
 mainmenu.add_cascade(label = "Конфигурация", menu = filemenu)
 filemenu.add_separator()
-filemenu.add_command(label = "О программе")
+filemenu.add_command(label = "О программе", command = aboutprogram_)
+filemenu.add_command(label = "Репозиторий в GitHub", command = openrepo_)
 
 
 mainframe = ttk.Frame(master = root, width = 250, height = 400, relief = RIDGE)
