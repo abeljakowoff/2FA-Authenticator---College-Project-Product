@@ -296,9 +296,9 @@ def change_passwords():
             with open(file = "./data/" + enter_a_file.get() + ".json", mode = "r") as f: filemenu = json.load
             confirm_please = messagebox.askyesno(title = "Подтверждение", message = "Вы действительно хотите удалить аккаунт? Эту операцию невозможно будет отменить.")
             if confirm_please:
-                os.remove("./data/" + enter_a_file + '.json')
+                os.remove("./data/" + str(enter_a_file.get()) + '.json')
                 totp_()
-                enter_a_file.delete(0, END)
+                configure_window.destroy()
         except Exception as error:
             messagebox.showerror(title = "Ошибка", message = "Аккаунта с таким названием не существует. Соблюдайте регистр букв.")
             print(error)
@@ -308,15 +308,16 @@ def change_passwords():
 
 
     configure_window = Toplevel()
-    configure_window.geometry('250x300')
+    configure_window.geometry('250x250')
     configure_window.resizable(FALSE, FALSE)
     configure_window.focus_set()
 
     ttk.Label(master = configure_window, text = "Удалить аккаунт", font = 'Verdana 16 bold').place(x = 125, y = 30, anchor = CENTER)
+    ttk.Label(master = configure_window, text = "Введите названия аккаунта").place(x = 125, y = 100, anchor = CENTER)
     enter_a_file = ttk.Entry(master = configure_window, width = 32)
-    enter_a_file.place(x = 125, y = 150, anchor = CENTER)
-    ttk.Button(master = configure_window, text = "Подтвержить", width = 14, command = ok__).place(x = 185, y = 250, anchor = CENTER)
-    ttk.Button(master = configure_window, text = "Отмена", width = 14, command = cancel_).place(x = 62, y = 250, anchor = CENTER)
+    enter_a_file.place(x = 125, y = 125, anchor = CENTER)
+    ttk.Button(master = configure_window, text = "Подтвержить", width = 14, command = ok__).place(x = 185, y = 225, anchor = CENTER)
+    ttk.Button(master = configure_window, text = "Отмена", width = 14, command = cancel_).place(x = 62, y = 225, anchor = CENTER)
 
 def openrepo_():
     web.open(url = "https://github.com/abeljakowoff/2FA-Authenticator---College-Project-Product", new = 0)
